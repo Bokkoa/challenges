@@ -3,20 +3,21 @@ function twoSum(nums: number[], target: number): number[] {
 
   let possibleValuesByResult = new Map<number, number>();
 
-  for (let i = 0; i < nums.length; i++) {
+  for (let index = 0; index < nums.length; index++) {
 
-    let expectedPair = target - nums[i];
+    let currentValue = nums[index];
+    let restValue = target - currentValue;
 
-    const previousValue = possibleValuesByResult.get(expectedPair)
-    if (previousValue != undefined) {
+    const indexOfRest = possibleValuesByResult.get(restValue)
+    if (indexOfRest != undefined) {
 
       return [
-        previousValue,
-        i,
+        indexOfRest,
+        index,
       ]
 
     }
-    possibleValuesByResult.set(nums[i], i);
+    possibleValuesByResult.set(currentValue, index);
   }
 
   return [];

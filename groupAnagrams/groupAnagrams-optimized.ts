@@ -1,33 +1,28 @@
 export function groupAnagrams(strs: string[]): string[][] {
 
+    const anagramGroupDict = new Map<string, string[]>();
 
-    const result: string[][] = [];
+    for(let i = 0; i < strs.length; i++){
+        const currentWord = strs[i];
 
-    const dict = {
+        const sortedWordIndex = currentWord.split('').sort().join('');
 
-    }
-    
-    for (let i = 0; i < strs.length; i++) {
+        const anagramGroupFound = anagramGroupDict.get(sortedWordIndex);
 
-        const arrStr = strs[i].split('').sort().join('');
+        if(anagramGroupFound != undefined){
 
-        if (!dict[arrStr]) {
-            dict[arrStr] = [strs[i]];
+            anagramGroupFound.push(currentWord);
+            anagramGroupDict.set(sortedWordIndex, anagramGroupFound);
         } else {
-            dict[arrStr].push(strs[i])
+            anagramGroupDict.set(sortedWordIndex, [currentWord]);
         }
-
     }
 
+    const anagramGroups: string[][] = [];
+    anagramGroupDict.forEach(group => anagramGroups.push(group));
 
-    let index = 0
-    for(let route in dict){
-        
-        result[index] = dict[route];
-        index++
-    }
+    return anagramGroups;
 
-    return result
 }
 
 
