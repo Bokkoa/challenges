@@ -3,7 +3,7 @@ function twoSum(nums: number[], target: number): number[] {
 
   let possibleValuesByResult = new Map<number, number>();
 
-  for (let i = 0; i <= nums.length - 1; i++) {
+  for (let i = 0; i < nums.length; i++) {
 
     let expectedPair = target - nums[i];
 
